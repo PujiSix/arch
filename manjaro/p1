@@ -1,1 +1,27 @@
+//membuat nextcloud dengan ip lokal dan menggunakan fitur ssh di dua device pemula
+//install ssh
+sudo pacman -S openssh
+//melihat status ssh 
+sudo systemctl status sshd {bila terdapat tulisan inactive (dead) maka ssh harus diaktifkan terlebih dahulu}
+//aktifkan ssh
+sudo systemctl start sshd
+//nonaktif ssh
+sudo systemctl stop sshd
 
+//connect ssh di device yang berbeda
+ ssh username@ip_add
+//install nextcloud
+https://snapcraft.io/install/nextcloud/manjaro
+//set user dan pass
+sudo nextcloud.manual-install admin 123456(usahakan user dan pass berbeda dari contoh)
+//lihat jaringan yang dapat mengakses nextcloud
+sudo nextcloud.occ config:system:get trusted_domains
+(bila hasilnya localhost maka tambahkan jaringan yang dapat mengakses nextcloud)
+//tambah jaringan 
+sudo nextcloud.occ config:system:set trusted_domains 1 --value=192.168.0.*
+//mengaktifkan ssl self-signed
+sudo nextcloud.enable-https self-signed
+sudo ufw allow 80,443/tcp
+//selesai,tinggal akses menggunakan ip add yang digunakan untuk menginstall nextcloud
+
+sumber:onno center
