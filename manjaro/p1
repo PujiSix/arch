@@ -8,6 +8,8 @@ sudo systemctl start sshd
 //nonaktif ssh
 sudo systemctl stop sshd
 
+
+
 //connect ssh di device yang berbeda
  ssh username@ip_add
 //install nextcloud
